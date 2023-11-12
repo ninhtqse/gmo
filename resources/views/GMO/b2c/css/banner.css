@@ -1,0 +1,148 @@
+@charset "utf-8";
+
+.u-blPC-only,
+.u-sp-only {
+  display: none !important;
+}
+@media screen and (max-width: 568px) {
+  .u-pc-only {
+    display: none !important;
+  }
+
+  .u-blPC-only {
+    display: block !important;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .u-ovSP-only {
+    display: none !important;
+  }
+
+  .u-sp-only {
+    display: block !important;
+  }
+}
+.content {
+  padding-bottom: 40px;
+}
+
+.banner-box {
+  padding: 0 16px 160px;
+}
+@media screen and (max-width: 1080px) {
+  .banner-box {
+    padding:0 16px 248px;
+  }
+}
+@media screen and (max-width: 650px) {
+  .banner-box {
+    padding:0 16px 368px;
+  }
+}
+
+.banner-wrapper-area {
+  max-width: 970px;
+  margin: 30px auto 60px;
+}
+.banner-pickup {
+  margin: 30px auto 0;
+}
+@media screen and (max-width: 568px) {
+  .banner-wrapper-area {
+    margin: 0 auto 30px;
+  }
+  .banner-pickup {
+    margin: 0 auto 0;
+  }
+}
+.banner-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 568px) {
+  .banner-list {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+}
+
+.banner-list-item {
+  margin-right: 35px;
+  width: 33.333%;
+  max-width: 300px;
+}
+
+@media screen and (max-width: 568px) {
+  .banner-list-item {
+    margin-right: 0;
+    margin-bottom: 4px;
+    width: 100%;
+    max-width: 250px;
+  }
+  .banner-list-item:last-child {
+    margin-bottom: 0;
+  }
+}
+.banner-list-item:last-child {
+  margin-right: 0;
+}
+
+.banner-list-item img {
+  width: 100%;
+  display: block;
+}
+
+.banner-wrapper-area h2 {
+  font-size: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 23px;
+  text-align: center;
+}
+
+.banner-wrapper-area h2:before,.banner-wrapper-area h2:after {
+  content: "";
+  border-top: 1px solid;
+  flex-grow: 1;
+}
+
+.banner-wrapper-area h2:before {
+  margin-right: 1rem;
+}
+
+.banner-wrapper-area h2:after {
+  margin-left: 1rem;
+}
+@media screen and (max-width: 568px) {
+  .banner-wrapper-area h2 {
+    height: auto;
+  }
+  .banner-wrapper-area h2:before,.banner-wrapper-area h2:after {
+    content: none;
+    border-top: none;
+  }
+
+  .banner-wrapper-area h2:before {
+    margin-right: 0;
+  }
+
+  .banner-wrapper-area h2:after {
+    margin-left: 0;
+  }
+
+}
+
+.banner-pickup h2 {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}

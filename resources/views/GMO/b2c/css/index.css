@@ -1,0 +1,107 @@
+body {
+    background-color: #fafbfd;
+    color: #24272b;
+    font-family: Subset-NotoSansJP-DemiLight,Roboto-Regular,sans-serif;
+    font-size: .9rem;
+    margin: 0;
+    padding: 0;
+}
+
+#header .header-top {
+    background: #fff;
+    color: #5a636d;
+}
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1080px;
+}
+header {
+    display: block;
+}
+#header .header-top .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* remove the gap so it doesn't close */
+}
+
+.list-unstyled {
+    display: flex;
+}
+.main .main-title {
+    color: #2c3e50;
+    display: inherit;
+    font-size: 1.1rem;
+    position: relative;
+    margin-bottom: 0;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 24px 0 48px 0;
+}
+.panel {
+    padding: 32px;
+    background: #fff;
+    border-radius: 0 0 3px 3px;
+    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    padding-top: 24px;
+    position: relative;
+    margin: 0 0 24px 0;
+}
+
+.panel .item-panel {
+    display: flex;
+    width: 100%;
+    padding-bottom: 20px;
+}
+.panel .item-panel label {
+    min-width: 224px;
+}
+.panel .item-panel .content-wrapper{
+    width: 100%;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.panel .item-panel .content-wrapper .horizontal-top .input-wrapper{
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+
+.panel .item-panel .content-wrapper-change {
+    display: block;
+}
+
+.panel .item-panel .content-wrapper .horizontal-bottom .text-right{
+    text-align: right;
+}
