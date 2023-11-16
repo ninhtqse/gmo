@@ -8,6 +8,25 @@ use GuzzleHttp\Client;
 
 class GmoController extends Controller
 {
+    public function getViewTransfer()
+    {
+        return view('GMO.transfer');
+    }
+
+    public function submitTransfer(Request $request)
+    {
+        return [
+            'vaTransaction' => [
+                'vaId' => '123',
+                'transactionDate' => '',
+                'depositAmount' => '',
+                'remitterNameKana' => '',
+                'paymentBankName' => '',
+                'paymentBranchName' => '',
+                'itemKey' => '',
+            ]
+        ];
+    }
     /**
      * This function will get code, after that redirect factorx site and get token gmo
      * @template looks like below
@@ -63,12 +82,15 @@ class GmoController extends Controller
         $vaList = [];
         for($i = 1; $i <= $request->get('issueRequestCount'); $i++) {
             $vaList[] = [
+                "id" => (string)\Str::uuid(),
                 "vaId" => $this->randomNumber(10),
                 "vaBranchCode" => '継続型',
                 "vaBranchNameKana" => '継続型',
                 "vaAccountNumber" => $this->randomNumber(7),
             ];
         }
+        DB::table('virtual_accounts')->insert($vaList);
+        
         return [
             "vaTypeCode" => 2,
             "vaTypeName" => '継続型',

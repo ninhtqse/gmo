@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/transfer', [GmoController::class, 'getViewTransfer']);
+Route::post('/transfer', [GmoController::class, 'submitTransfer']);
 Route::get('/ganb/api/auth/v1/authorization', [GmoController::class, 'getCode']);
 Route::post('/ganb/api/auth/v1/token', [GmoController::class, 'getToken']);
 Route::get('/ganb/api/corporation/v1/accounts', [GmoController::class, 'getAccount']);
