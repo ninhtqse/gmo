@@ -8,6 +8,9 @@ use GuzzleHttp\Client;
 
 class GmoController extends Controller
 {
+    /**
+     * ================> WEB <============================
+     */
     public function getViewTransfer()
     {
         return view('GMO.transfer');
@@ -35,74 +38,9 @@ class GmoController extends Controller
         $this->process(Config('config.callback_url'), 'POST', $array, $headers);
     }
 
-    public function transferFee(Request $request)
-    {
-        $data = $request->all();
-
-        return [
-            'accountId' => $data['accountId'],
-            'baseDate' => date('Y-m-d'),
-            // 'baseTime' => time(),
-            'totalFee' => $data['transfers'][0]['transferAmount'],
-            'transferFeeDetails' => $data['transfers']
-        ];
-    }
-
-    public function balances()
-    {
-        return [
-            'balances' => [
-                [
-                    'balance' => 999999999999999999999999999999999999999999999999
-                ]
-            ]
-        ];
-    }
-
-    public function request(Request $request)
-    {
-        $data = $request->all();
-
-        return [
-            'accountId' => $data['accountId'],
-            'resultCode' => 2,
-            'applyNo' => $this->randomNumber(16),
-            // 'applyEndDatetime' => date('Ymd').time(), #25
-        ];
-    }
-
-    public function requestResult(Request $request)
-    {
-        $data = $request->all();
-
-        return [
-            'accountId' => $data['accountId'],
-            'resultCode' => 1,
-            'applyNo' => $this->randomNumber(16),
-            'applyEndDatetime' => date('YmdHis').time(). 1
-        ];
-    }
-
-    public function getStatus(Request $request)
-    {
-        $data = $request->all();
-
-        return [
-            'acceptanceKeyClass' => 1,
-            'baseDate' => time(),
-            // 'baseTime' => 'baseTime',
-            'count' => 'count',
-            'transferQueryBulkResponses' => [],
-            'transferDetails' => [
-                [
-                    'transferStatus' => 20,
-                    'totalDebitAmount' => 20000,
-                    'transferDetailFee' => 20000
-                ]
-            ]
-        ];
-    }
-
+    /**
+     * ================> API <============================
+     */
     public function verifyAccountNumber($numberAccount)
     {
         $record = \DB::table('virtual_accounts')->where('vaAccountNumber', $numberAccount)->first();
@@ -226,6 +164,78 @@ class GmoController extends Controller
             'vaList' => $vaList,
         ];
     }
+
+    public function transferFee(Request $request)
+    {
+        $data = $request->all();
+
+        return [
+            'accountId' => $data['accountId'],
+            'baseDate' => date('Y-m-d'),
+            // 'baseTime' => time(),
+            'totalFee' => $data['transfers'][0]['transferAmount'],
+            'transferFeeDetails' => $data['transfers']
+        ];
+    }
+
+    public function balances()
+    {
+        return [
+            'balances' => [
+                [
+                    'balance' => 999999999999999999999999999999999999999999999999
+                ]
+            ]
+        ];
+    }
+
+    public function request(Request $request)
+    {
+        $data = $request->all();
+
+        return [
+            'accountId' => $data['accountId'],
+            'resultCode' => 2,
+            'applyNo' => $this->randomNumber(16),
+            'applyEndDatetime' => date('YmdHis').time(). 1,
+        ];
+    }
+
+    public function requestResult(Request $request)
+    {
+        $data = $request->all();
+
+        return [
+            'accountId' => $data['accountId'],
+            'resultCode' => 1,
+            'applyNo' => $this->randomNumber(16),
+            'applyEndDatetime' => date('YmdHis').time(). 1,
+        ];
+    }
+
+    public function getStatus(Request $request)
+    {
+        $data = $request->all();
+
+        return [
+            'acceptanceKeyClass' => 1,
+            'baseDate' => time(),
+            // 'baseTime' => 'baseTime',
+            'count' => 'count',
+            'transferQueryBulkResponses' => [],
+            'transferDetails' => [
+                [
+                    'transferStatus' => 20,
+                    'totalDebitAmount' => 20000,
+                    'transferDetailFee' => 20000
+                ]
+            ]
+        ];
+    }
+    
+    /**
+     * =============> SUPPORT METHOD <============================
+     */
 
     /**
      * This function will support call api

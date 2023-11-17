@@ -27,4 +27,11 @@ class Controller extends BaseController
 
         return back();
     }
+
+    public function logout()
+    {
+        \Auth::logout();
+
+        return redirect('login');
+    }
 }

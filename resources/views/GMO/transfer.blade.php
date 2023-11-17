@@ -199,7 +199,7 @@
                                             </a></li>
                                     </ul>
                                     <div class="button-logout-wrapper"><button type="button"
-                                            class="button-login">ログアウト</button></div>
+                                            class="button-logout"><a href="{{route('logout')}}">ログアウト</a></button></div>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +220,7 @@
                                     class="username">法人ＡＰＩテスト口座　零零八弐</span><span>さま</span></span>
                             <div class="datetime">2023/11/17 00:11</div>
                         </div>
-                        <div><button type="button" class="button-login">ログアウト</button></div>
+                        <div><a href="{{route('logout')}}"><button type="button" class="button-login">ログアウト</button></a></div>
                     </div>
                 </div>
             </section>

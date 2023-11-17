@@ -19,8 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', [Controller::class, 'getViewLogin']);
+Route::get('/login', [Controller::class, 'getViewLogin'])->name('login');
 Route::post('/login', [Controller::class, 'submitLogin']);
+
+Route::get('/logout', [Controller::class, 'logout'])->name('logout');
 
 Route::get('/transfer', [GmoController::class, 'getViewTransfer'])->name('transfer');
 Route::post('/transfer', [GmoController::class, 'submitTransfer']);
