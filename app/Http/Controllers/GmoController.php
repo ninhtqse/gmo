@@ -65,9 +65,41 @@ class GmoController extends Controller
 
         return [
             'accountId' => $data['accountId'],
-            'resultCode' => 1,
+            'resultCode' => 2,
             'applyNo' => $this->randomNumber(16),
             // 'applyEndDatetime' => date('Ymd').time(), #25
+        ];
+    }
+
+    public function requestResult(Request $request)
+    {
+        $data = $request->all();
+
+        return [
+            'accountId' => $data['accountId'],
+            'resultCode' => 1,
+            'applyNo' => $this->randomNumber(16),
+            'applyEndDatetime' => date('YmdHis').time(). 1
+        ];
+    }
+
+    public function getStatus(Request $request)
+    {
+        $data = $request->all();
+
+        return [
+            'acceptanceKeyClass' => 1,
+            'baseDate' => time(),
+            // 'baseTime' => 'baseTime',
+            'count' => 'count',
+            'transferQueryBulkResponses' => [],
+            'transferDetails' => [
+                [
+                    'transferStatus' => 20,
+                    'totalDebitAmount' => 20000,
+                    'transferDetailFee' => 20000
+                ]
+            ]
         ];
     }
 

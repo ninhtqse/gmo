@@ -37,3 +37,5 @@ Route::post('/ganb/api/corporation/v1/va/issue', [GmoController::class, 'getIssu
 Route::post('/ganb/api/corporation/v1/transfer/transferfee', [GmoController::class, 'transferFee']);
 Route::get('/ganb/api/corporation/v1/accounts/balances', [GmoController::class, 'balances']);
 Route::post('/ganb/api/corporation/v1/transfer/request', [GmoController::class, 'request']);
+Route::get('/ganb/api/corporation/v1/transfer/request-result', [GmoController::class, 'requestResult']);
+Route::get('/ganb/api/corporation/v1/transfer/status', [GmoController::class, 'getStatus']);
