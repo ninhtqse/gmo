@@ -17,8 +17,6 @@ pushd /var/www/html
   fi
   # Migrations database
   php artisan migrate
-  # Run script mysql
-  php artisan script
 popd
 
 # start workspace process
