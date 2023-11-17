@@ -13,6 +13,9 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'ganb/api/auth/v1/token',
-        'ganb/api/corporation/v1/va/issue'
+        'ganb/api/corporation/v1/va/issue',
+        '/ganb/api/webhooks/v1/subscribe',
+        '/ganb/api/corporation/v1/transfer/transferfee',
+        '/ganb/api/corporation/v1/transfer/request'
     ];
 }

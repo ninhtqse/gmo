@@ -64,6 +64,7 @@
                     </script>
                 </div>
                 <form method="post" id="fm1" autocomplete="off">
+                    @csrf
                     <div class="panel-body">
                         <div class="certicifate-wrapper">
                             <!-- PC版説明表示 --><p class="certicifate-description desktop-only">ビジネスID管理サービスをご利用で、電子証明書を発行しているお客さま</p>
@@ -83,7 +84,7 @@
                         <div class="input-wrapper">
                             <div class="text-description">ログインパスワード</div>
                             <div>
-                                <input type="password" name="password" maxlength="10" size="16" value="" placeholder="6～10文字の半角英数記号"
+                                <input type="password" name="password" size="16" value="" placeholder="6～10文字の半角英数記号"
                                        id="password"
                                        tabindex="2" /></div>
                         </div>

@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GMOあおぞらネット銀行</title>
     <link rel="stylesheet" href="b2c/css/transfer.css">
+    <style>
+        .hidden{
+            display: none
+        }
+    </style>
 </head>
 
 <body>
@@ -26,8 +31,9 @@
                                         <div class="icon-group"><a href="#" class="agrees-list"><img
                                                     src="https://d04.dev-bank.gmo-aozora.com/static/img/chacked.svg"></a><a
                                                 href="/bank/notices/important" class="notices"><img
-                                                    src="https://d04.dev-bank.gmo-aozora.com/static/img/notices.svg"></a><a href="/bank/contact-list"
-                                                class="contact"><img src="/static/img/contact-sp.svg"></a></div>
+                                                    src="https://d04.dev-bank.gmo-aozora.com/static/img/notices.svg"></a><a
+                                                href="/bank/contact-list" class="contact"><img
+                                                    src="/static/img/contact-sp.svg"></a></div>
                                         <div><a href="/bank/customer-information/settings" class=""><span
                                                     class="username-wrapper"><span
                                                         class="username">法人ＡＰＩテスト口座　零零八弐</span>さま</span></a></div>
@@ -197,16 +203,19 @@
                                 </div>
                             </div>
                         </div>
-                    </section><a href="/bank" class="logo router-link-active"><img src="https://d04.dev-bank.gmo-aozora.com/static/img/logo-pc.svg"
+                    </section><a href="/bank" class="logo router-link-active"><img
+                            src="https://d04.dev-bank.gmo-aozora.com/static/img/logo-pc.svg"
                             class="desktop-only banner-pc"></a>
                     <div class="user desktop-only flex">
                         <div href="" class="user-info"><a href="#" class="desktop-only agrees-list"><img
-                                    src="https://d04.dev-bank.gmo-aozora.com/static/img/chacked.svg"></a><a href="/bank/notices/important"
-                                class="desktop-only notices"><img src="https://d04.dev-bank.gmo-aozora.com/static/img/notices.svg"></a><a
+                                    src="https://d04.dev-bank.gmo-aozora.com/static/img/chacked.svg"></a><a
+                                href="/bank/notices/important" class="desktop-only notices"><img
+                                    src="https://d04.dev-bank.gmo-aozora.com/static/img/notices.svg"></a><a
                                 href="/bank/contact-list" class="desktop-only contact"><img
                                     src="https://d04.dev-bank.gmo-aozora.com/static/img/contact.svg"></a><a
                                 href="https://d04.dev-gmo-aozora.com/support/guide.html" target="_blank"
-                                class="desktop-only guide"><img src="https://d04.dev-bank.gmo-aozora.com/static/img/guide.svg"></a><span
+                                class="desktop-only guide"><img
+                                    src="https://d04.dev-bank.gmo-aozora.com/static/img/guide.svg"></a><span
                                 class="username-wrapper"><span
                                     class="username">法人ＡＰＩテスト口座　零零八弐</span><span>さま</span></span>
                             <div class="datetime">2023/11/17 00:11</div>
@@ -351,6 +360,9 @@
             <header>
                 <h2>振込内容の入力</h2>
             </header>
+            <div class="error-messages">
+                <div class="hidden not-found-account-number">ご指定の口座へのお振込ができません。受取人さまにご確認ください</div>
+            </div>
             <!---->
             <div class="block">
                 <header>
@@ -358,7 +370,8 @@
                 </header>
                 <div class="panel inner-block">
                     <div class="panel-body">
-                        <form class="horizontal simple">
+                        <form id="form-transfer" class="horizontal simple" method="POST">
+                            @csrf
                             <div><label>金融機関情報</label>
                                 <div class="content-wrapper horizontal">
                                     ＧＭＯあおぞらネット銀行 あじさい支店
@@ -370,14 +383,15 @@
                                 </div>
                             </div>
                             <div><label>口座番号</label>
-                                <div class="content-wrapper"><span class="input-wrapper"><span><input type="text"
-                                                pattern="\d*" placeholder="" maxlength="7"
-                                                class="input-s"></span><button type="button" disabled="disabled"
+                                <div class="content-wrapper"><span class="input-wrapper"><span>
+                                            <input id="input-account-number" name="account_number" type="text" pattern="\d*" placeholder="" maxlength="7"
+                                                class="input-s"></span>
+                                            <button id="btn-search-account-number" type="button" disabled="disabled"
                                             class="button-sm post button-ghost">受取人名の表示</button></span></div>
                             </div>
                             <div><label>受取人名</label>
                                 <div class="content-wrapper">
-                                    <div></div>
+                                    <div class="input-recipient-name"></div>
                                 </div>
                             </div>
                             <div><label>振込金額</label>
@@ -385,6 +399,7 @@
                                     <div class="horizontal block-mobile">
                                         <div class="input-wrapper"><input data-v-bc6b7aee="" type="text"
                                                 placeholder="¥やカンマ（,）は除いて数字を入力" maxlength="15"
+                                                name="amount"
                                                 class="num input-amount input-mm">
                                             <div class="unit post">円</div>
                                         </div>
@@ -493,7 +508,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bottom-buttons"><button type="button" class="back button-lg">キャンセル</button><button type="button"
+            <div class="bottom-buttons"><button type="button" class="back button-lg">キャンセル</button><button id="btn-transfer" type="button"
                     class="button-lg button-lg-m button-secondary">確認</button></div>
             <div class="disclaimer">
                 <div>＜ご注意＞</div>
@@ -535,5 +550,36 @@
         </footer>
     </section>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $('#input-account-number').on('keyup change', function (e) {
+        let value = e.target.value;
+        if (value.length >= 6) {
+            $('#btn-search-account-number').removeAttr('disabled')
+        } else if (value.length < 6) {
+            let attr = $('#btn-search-account-number').attr('disable');
+            if (typeof attr == 'undefined') {
+                $('#btn-search-account-number').attr("disabled","disabled");
+            }
+        }
+    })
+
+    $('body').on('click', '#btn-search-account-number', function () {
+        $.get(`/api/v1/verify_account_number/${$('#input-account-number').val()}`, function(data){
+            let status = data.status;
+            if (status === 'error') {
+                $('.not-found-account-number').removeClass('hidden');
+            } else {
+                $('.not-found-account-number').addClass('hidden');
+                let virtual_account = data.data.virtual_account;
+                $('.input-recipient-name').html('factorx')
+            }
+        });
+    });
+
+    $('body').on('click', '#btn-transfer', function () {
+        $('#form-transfer').submit();
+    })
+</script>
 
 </html>
